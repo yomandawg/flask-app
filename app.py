@@ -3,7 +3,7 @@ app = Flask(__name__)
 
 @app.route("/")
 @app.route("/<string:name>")
-def index(name=None):
+def index(name="Index"):
     foo = {
         "title": "Flask Example",
         "bar": "Hello, World!",
