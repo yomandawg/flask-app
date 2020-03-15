@@ -1,8 +1,9 @@
 from flask_restful import Resource
 from flask import render_template
+from pymongo import MongoClient
 import json
 
-
+client = MongoClient('localhost', 27017)
 
 
 class DefaultRouter(Resource):
@@ -20,6 +21,6 @@ class DefaultRouter(Resource):
 
 class DBRouter(Resource):
   def get(self):
-    online_users = mongo.db.users.find()
+    online_users = client.db.users.find()
     print(dict(online_users))
     return json.dumps(dict(online_users))
