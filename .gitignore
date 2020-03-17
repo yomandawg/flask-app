@@ -6,3 +6,6 @@ Include/
 pyvenv.cfg
 Scripts/
 bin/
+
+# store naver app private info
+app_config.py
