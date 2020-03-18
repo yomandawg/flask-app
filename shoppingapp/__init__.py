@@ -2,7 +2,7 @@ from flask import Flask
 from flask_restful import Api
 
 
-def factory():
+def create_app():
     app = Api(Flask(__name__))
 
     from .handlers.handler import DBRouter, ShoppingRouter

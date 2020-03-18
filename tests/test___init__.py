@@ -1,4 +1,4 @@
-from shoppingapp import factory
+from shoppingapp import create_app
 
 def test_factory():
-    assert factory().testing
+    assert create_app().testing
