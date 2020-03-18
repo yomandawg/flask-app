@@ -10,3 +10,4 @@ bin/
 
 # store naver app private info
 app_config.py
+ray.json
