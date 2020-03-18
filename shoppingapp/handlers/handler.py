@@ -4,7 +4,7 @@ import requests
 import json
 
 try:
-    import app_config as cfg
+    from shoppingapp import config as cfg
 except NotImplementedError:
     print("Please register app_config")
     print("If you dont know how to register it,")
