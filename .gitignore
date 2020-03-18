@@ -9,5 +9,5 @@ Scripts/
 bin/
 
 # store naver app private info
-app_config.py
+shoppingapp/config.py
 ray.json
