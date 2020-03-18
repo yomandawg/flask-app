@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_restful import Api, Resource
-from naver import naver
+from .naver import naver
 import json
 
 app = Flask(__name__)
