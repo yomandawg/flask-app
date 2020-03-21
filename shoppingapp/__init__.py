@@ -7,9 +7,10 @@ def create_app():
 
     api = Api(app)
 
-    from .handlers.handler import DBRouter, ShoppingRouter
+    from .handlers.handler import DBRouter, ShoppingRouter, TestHandler
 
     api.add_resource(DBRouter, '/api/db')
     api.add_resource(ShoppingRouter, '/api/shopping')
+    api.add_resource(TestHandler, '/api/test')
 
     return app

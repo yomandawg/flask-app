@@ -6,7 +6,7 @@ import json
 try:
     from shoppingapp import config as cfg
 except NotImplementedError:
-    print("Please register app_config")
+    print("Please register config")
     print("If you dont know how to register it,")
     print("See : git log 40c1ad8093212ac47482181e40bdf9e1095a58c1")
 
@@ -44,3 +44,7 @@ class ShoppingRouter(Resource):
         r = requests.post(DATALAB_URL, data=json.dumps(QUERY), headers=headers)
         print(r)
         return r.json()
+
+class TestHandler(Resource):
+    def get(self):
+        return json.dumps({"name":"cs", "age":34})
