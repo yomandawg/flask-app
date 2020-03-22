@@ -31,15 +31,24 @@ headers = {
     "X-Naver-Client-Secret": cfg.client_secret,
     "Content-Type": "application/json"
 }
+print("handler")
+client.db.users.insert_one({"name":"YJ", "age":27})
 
 class DBRouter(Resource):
     def get(self):
-        online_users = client.db.users.find()
-        print(dict(online_users))
-        return json.dumps(dict(online_users))
+        online_users = list(client.db.users.find())
+        print(type(online_users))
+        
+        for user in online_users:
+            print(user)
+            user["_id"] = ""
+            print(user)
+        print("====> ", online_users[0])
+        return json.dumps(online_users[0])
 
 
 class ShoppingRouter(Resource):
+
     def get(self):
         r = requests.post(DATALAB_URL, data=json.dumps(QUERY), headers=headers)
         print(r)
@@ -48,3 +57,31 @@ class ShoppingRouter(Resource):
 class TestHandler(Resource):
     def get(self):
         return json.dumps({"name":"cs", "age":34})
+
+
+class RayHandler(Resource):
+    def get(self):
+        result = {
+            "glossary": {
+                "title": "example glossary",
+                "GlossDiv": {
+                    "title": "S",
+                    "GlossList": {
+                        "GlossEntry": {
+                            "ID": "SGML",
+                            "SortAs": "SGML",
+                            "GlossTerm": "Standard Generalized Markup Language",
+                            "Acronym": "SGML",
+                            "Abbrev": "ISO 8879:1986",
+                            "GlossDef": {
+                                "para": "A meta-markup language, used to create markup languages such as DocBook.",
+                                "GlossSeeAlso": ["GML", "XML"]
+                            },
+                            "GlossSee": "markup"
+                        }
+                    }
+                }
+            },
+            "count" : [{"name":"cs"},{"name":"YJ"},{"name":"YH"}]
+        }
+        return json.dumps(result)
