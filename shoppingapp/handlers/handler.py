@@ -55,31 +55,3 @@ class ShoppingRouter(Resource):
 class TestHandler(Resource):
     def get(self):
         return json.dumps({"name":"cs", "age":34})
-
-
-class RayHandler(Resource):
-    def get(self):
-        result = {
-            "glossary": {
-                "title": "example glossary",
-                "GlossDiv": {
-                    "title": "S",
-                    "GlossList": {
-                        "GlossEntry": {
-                            "ID": "SGML",
-                            "SortAs": "SGML",
-                            "GlossTerm": "Standard Generalized Markup Language",
-                            "Acronym": "SGML",
-                            "Abbrev": "ISO 8879:1986",
-                            "GlossDef": {
-                                "para": "A meta-markup language, used to create markup languages such as DocBook.",
-                                "GlossSeeAlso": ["GML", "XML"]
-                            },
-                            "GlossSee": "markup"
-                        }
-                    }
-                }
-            },
-            "count" : [{"name":"cs"},{"name":"YJ"},{"name":"YH"}]
-        }
-        return json.dumps(result)
