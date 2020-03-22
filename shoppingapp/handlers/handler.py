@@ -24,6 +24,20 @@ QUERY = {
     "ages": ["20",  "30"]
 }
 
+TREND_URL = "https://openapi.naver.com/v1/datalab/search"
+TREND_QUERY = {
+    "startDate": "2017-08-01",
+    "endDate": "2017-09-30",
+    "timeUnit": "month",
+    "kewordGroups": [
+        {"groupName": "의류", "keywords": ["상의", "하의"]},
+        {"groupName": "전자기기", "keywords": ["스마트폰", "노트북"]}
+    ],
+    "device": "mo",
+    "gender": "m",
+    "ages": ["20", "30"]
+}
+
 client = MongoClient('localhost', 27017)
 
 headers = {
@@ -46,11 +60,18 @@ class DBRouter(Resource):
 
 
 class ShoppingRouter(Resource):
-
     def get(self):
         r = requests.post(DATALAB_URL, data=json.dumps(QUERY), headers=headers)
         print(r)
         return r.json()
+
+
+class TrendRouter(Resource):
+    def get(self):
+        r = requests.post(TREND_URL, data=json.dumps(TREND_QUERY), headers=headers)
+        print(r)
+        return r.json()
+
 
 class TestHandler(Resource):
     def get(self):
