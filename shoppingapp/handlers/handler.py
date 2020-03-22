@@ -31,8 +31,6 @@ headers = {
     "X-Naver-Client-Secret": cfg.client_secret,
     "Content-Type": "application/json"
 }
-print("handler")
-client.db.users.insert_one({"name":"YJ", "age":27})
 
 class DBRouter(Resource):
     def get(self):

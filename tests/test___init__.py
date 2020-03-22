@@ -22,4 +22,4 @@ def test_ray_handler(client):
     res = client.get("/ray")
     res = json.loads(json.loads(res.data))
     assert res["glossary"]["title"] == "example glossary"
-    assert len(res["count"]) == 4
+    assert len(res["count"]) == 3
