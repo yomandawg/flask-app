@@ -5,7 +5,6 @@ from flask import render_template
 
 import json
 
-
 def create_app():
     app = Flask(__name__)
 
@@ -17,5 +16,7 @@ def create_app():
     api.add_resource(ShoppingRouter, '/api/shopping')
     api.add_resource(TrendRouter, '/api/trend')
     api.add_resource(TestHandler, '/api/test')
+
+    app.add_url_rule('/trend', 'templates/index.html', TrendRouter)
 
     return app
