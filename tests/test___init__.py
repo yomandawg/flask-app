@@ -17,3 +17,8 @@ def test_api_handler(client):
     res = json.loads(json.loads(res.data))
     assert res["name"] == "cs"
     assert res["age"] == 34
+
+def test_trend(client):
+    res = client.get("/api/trend")
+    res = json.loads(res.data)
+    assert res["startDate"] == "2019-12-30"

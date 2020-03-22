@@ -17,6 +17,4 @@ def create_app():
     api.add_resource(TrendRouter, '/api/trend')
     api.add_resource(TestHandler, '/api/test')
 
-    app.add_url_rule('/trend', 'templates/index.html', TrendRouter)
-
     return app
