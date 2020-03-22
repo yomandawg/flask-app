@@ -14,7 +14,7 @@ def create_app():
 
     api.add_resource(DBRouter, '/api/db')
     api.add_resource(ShoppingRouter, '/api/shopping')
-    api.add_resource(TrendRouter, '/api/trend')
+    api.add_resource(TrendRouter, '/api/trend/<string:search>')
     api.add_resource(TestHandler, '/api/test')
 
     return app

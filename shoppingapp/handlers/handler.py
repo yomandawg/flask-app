@@ -67,11 +67,21 @@ class ShoppingRouter(Resource):
 
 
 class TrendRouter(Resource):
-    def get(self):
+    # def get(self):
+    #     trend_headers = headers
+    #     r = requests.post(TREND_URL, data=json.dumps(TREND_QUERY), headers=trend_headers)
+    #     print(r)
+    #     return r.json()
+    
+    def get(self, search):
         trend_headers = headers
+        trend_query = TREND_QUERY
+        trend_query["keywordGroups"] = [{"groupName": "코로나", "keywords": [str(search)]}]
+        print(TREND_QUERY)
         r = requests.post(TREND_URL, data=json.dumps(TREND_QUERY), headers=trend_headers)
         print(r)
         return r.json()
+        
 
 
 class TestHandler(Resource):
