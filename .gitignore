@@ -4,9 +4,13 @@ venv/
 __pycache__/
 Lib/
 Include/
-pyvenv.cfg
 Scripts/
 bin/
+.tox/
+*.egg-info/
+pyvenv.cfg
+*.pyc
+
 
 # store naver app private info
 shoppingapp/config.py
