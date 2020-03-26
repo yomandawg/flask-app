@@ -24,6 +24,20 @@ QUERY = {
     "ages": ["20",  "30"]
 }
 
+TREND_URL = "https://openapi.naver.com/v1/datalab/search"
+TREND_QUERY = {
+    "startDate": "2020-01-01",
+    "endDate": "2020-03-01",
+    "timeUnit": "week",
+    "keywordGroups": [
+        {"groupName": "코로나", "keywords": ["우한"]},
+        {"groupName": "코로나", "keywords": ["마스크"]}
+    ],
+    "device": "mo",
+    "gender": "f",
+    "ages": ["3", "4", "5"]
+}
+
 client = MongoClient('localhost', 27017)
 
 headers = {
@@ -31,8 +45,6 @@ headers = {
     "X-Naver-Client-Secret": cfg.client_secret,
     "Content-Type": "application/json"
 }
-print("handler")
-client.db.users.insert_one({"name":"YJ", "age":27})
 
 class DBRouter(Resource):
     def get(self):
@@ -48,40 +60,30 @@ class DBRouter(Resource):
 
 
 class ShoppingRouter(Resource):
-
     def get(self):
         r = requests.post(DATALAB_URL, data=json.dumps(QUERY), headers=headers)
         print(r)
         return r.json()
 
+
+class TrendRouter(Resource):
+    # def get(self):
+    #     trend_headers = headers
+    #     r = requests.post(TREND_URL, data=json.dumps(TREND_QUERY), headers=trend_headers)
+    #     print(r)
+    #     return r.json()
+    
+    def get(self, search):
+        trend_headers = headers
+        trend_query = TREND_QUERY
+        trend_query["keywordGroups"] = [{"groupName": "코로나", "keywords": [str(search)]}]
+        print(TREND_QUERY)
+        r = requests.post(TREND_URL, data=json.dumps(TREND_QUERY), headers=trend_headers)
+        print(r)
+        return r.json()
+        
+
+
 class TestHandler(Resource):
     def get(self):
         return json.dumps({"name":"cs", "age":34})
-
-
-class RayHandler(Resource):
-    def get(self):
-        result = {
-            "glossary": {
-                "title": "example glossary",
-                "GlossDiv": {
-                    "title": "S",
-                    "GlossList": {
-                        "GlossEntry": {
-                            "ID": "SGML",
-                            "SortAs": "SGML",
-                            "GlossTerm": "Standard Generalized Markup Language",
-                            "Acronym": "SGML",
-                            "Abbrev": "ISO 8879:1986",
-                            "GlossDef": {
-                                "para": "A meta-markup language, used to create markup languages such as DocBook.",
-                                "GlossSeeAlso": ["GML", "XML"]
-                            },
-                            "GlossSee": "markup"
-                        }
-                    }
-                }
-            },
-            "count" : [{"name":"cs"},{"name":"YJ"},{"name":"YH"}]
-        }
-        return json.dumps(result)

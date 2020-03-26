@@ -18,8 +18,7 @@ def test_api_handler(client):
     assert res["name"] == "cs"
     assert res["age"] == 34
 
-def test_ray_handler(client):
-    res = client.get("/ray")
-    res = json.loads(json.loads(res.data))
-    assert res["glossary"]["title"] == "example glossary"
-    assert len(res["count"]) == 4
+def test_trend(client):
+    res = client.get("/api/trend")
+    res = json.loads(res.data)
+    assert res["startDate"] == "2019-12-30"
