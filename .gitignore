@@ -10,7 +10,7 @@ bin/
 *.egg-info/
 pyvenv.cfg
 *.pyc
-
+.coverage
 
 # store naver app private info
 shoppingapp/config.py
