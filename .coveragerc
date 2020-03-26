@@ -1,0 +1,7 @@
+[run]
+omit = 
+  venv/*
+  .tox/*
+  .venv/*
+  shoppingapp.egg-info/*
+
